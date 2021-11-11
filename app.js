@@ -13,12 +13,13 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
 db.once("open", function(){ 
  console.log("Connection to DB succeeded")}); 
+ 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var icecreamRouter = require('./routes/icecream');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
-
+var resourceRouter = require('./routes/resource');
 var icecream = require("./models/icecream"); 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use('/users', usersRouter);
 app.use('/icecream', icecreamRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 // We can seed the collection if needed on server start 
 async function recreateDB(){ 
@@ -51,12 +53,12 @@ async function recreateDB(){
   let instance2 = new icecream({  flavour: "strawberry",price: 10.0,toppings:"caramel"}); 
   instance2.save( function(err,doc) { 
       if(err) return console.error(err); 
-      console.log("First object saved") 
+      console.log("Second object saved") 
   }); 
   let instance3 = new icecream({  flavour: "chocolate",price: 8.9,toppings:"oreo"}); 
   instance3.save( function(err,doc) { 
       if(err) return console.error(err); 
-      console.log("First object saved") 
+      console.log("Third object saved")
   }); 
 } 
  
