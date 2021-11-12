@@ -13,8 +13,15 @@ exports.icecream_list = async function(req, res) {
 }; 
  
 // for a specific icecream. 
-exports.icecream_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: icecream detail: ' + req.params.id); 
+exports.icecream_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await icecream.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
  
 // Handle icecream create on POST. 
