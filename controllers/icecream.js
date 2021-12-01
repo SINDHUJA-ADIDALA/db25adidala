@@ -64,8 +64,7 @@ exports.icecream_update_put = async function(req, res) {
     try { 
         let toUpdate = await icecream.findById( req.params.id) 
         // Do updates of properties 
-        if(req.body.flavour)  
-               toUpdate.flavour = req.body.flavour; 
+        if(req.body.flavour) toUpdate.flavour = req.body.flavour; 
         if(req.body.price) toUpdate.price = req.body.price; 
         if(req.body.toppings) toUpdate.toppings = req.body.toppings; 
         let result = await toUpdate.save(); 
@@ -144,4 +143,3 @@ result });
         res.send(`{'error': '${err}'}`); 
     } 
 }; 
- 
